@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>หัวใจของเค้า 💖</title>
+  <style>
+    body {
+      background: #fff0f6;
+      font-family: 'Kanit', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    .heart-box {
+      width: 100px;
+      height: 90px;
+      position: relative;
+      background: pink;
+      margin: 20px auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .heart-box::before,
+    .heart-box::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 90px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart-box::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart-box::after {
+      top: 0;
+      left: 50px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .message {
+      font-size: 1.2rem;
+      color: #d63384;
+      margin-top: 20px;
+      max-width: 90%;
+    }
+
+    #surpriseContent img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 500px) {
+      .heart-box {
+        transform: scale(0.8);
+      }
+
+      .message {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="box1" class="heart-box" onclick="nextBox(1)" title="คลิกเปิดกล่องแรก 💖"></div>
+  <div id="box2" class="heart-box hidden" onclick="nextBox(2)" title="กล่องถัดไปของหัวใจ 💗"></div>
+  <div id="box3" class="heart-box hidden" onclick="nextBox(3)" title="กล่องสุดท้ายแล้ว! 🎁"></div>
+
+  <div id="surpriseContent" class="hidden">
+    <h2>เซอร์ไพรส์! 💘</h2>
+    <p class="message">อยากบอกว่า... ขอบคุณที่อยู่กับเค้านะ รักมากๆๆๆๆ 🥹💕</p>
+    <img src="https://i.imgur.com/2x8wC9J.jpeg" alt="รูปน่ารัก" />
+    <audio autoplay loop controls>
+      <source src="your_music.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <div id="message" class="message"></div>
+
+  <script>
+    function nextBox(current) {
+      document.getElementById(`box${current}`).style.display = "none";
+      const next = current + 1;
+
+      const messages = [
+        "",
+        "อ๊ะ~ ยังไม่จบนะ ลองคลิกอีกที 😚",
+        "ใกล้แล้วน้าา 💞",
+        "พร้อมหรือยัง... เปิดหัวใจเลย 💝"
+      ];
+
+      document.getElementById("message").innerText = messages[current];
+
+      if (next <= 3) {
+        document.getElementById(`box${next}`).classList.remove("hidden");
+      } else {
+        document.getElementById("message").innerText = "";
+        document.getElementById("surpriseContent").classList.remove("hidden");
+      }
+    }
+  </script>
+
+</body>
+</html>
